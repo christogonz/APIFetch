@@ -20,32 +20,29 @@ struct ContentView: View {
         NavigationView {
             List(countries, id: \.id){ country in
                 HStack {
-                        RemoteImage(url: country.flag)
-                            .frame(width: 50)
-                            .clipShape(Circle())
-
-                        VStack(alignment: .leading) {
-                            Text(country.name)
-                            Text(country.capital)
-                                .foregroundStyle(.secondary)
-                        }
-                        
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Population")
-                            Text(formatPopulation(country.population))
-                                .foregroundStyle(.secondary)
-                        }
-                        
-//
-                        
+                    RemoteImage(url: country.flag)
+                        .frame(width: 50)
+                        .clipShape(Circle())
+                    
+                    VStack(alignment: .leading) {
+                        Text(country.name)
+                        Text(country.capital)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                    VStack(alignment: .leading) {
+                        Text("Population")
+                        Text(formatPopulation(country.population))
+                            .foregroundStyle(.secondary)
                     }
                 }
+            }
             .navigationTitle("Countries")
         }
         .onAppear {
             apiService.fetchCountries { fetchedCountries in
-                    countries = fetchedCountries
+                countries = fetchedCountries
             }
         }
     }
