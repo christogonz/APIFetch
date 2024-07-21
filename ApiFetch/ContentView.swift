@@ -17,7 +17,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
+        NavigationView {
             List(countries, id: \.id){ country in
                 HStack {
                         RemoteImage(url: country.flag)
@@ -41,6 +41,7 @@ struct ContentView: View {
                         
                     }
                 }
+            .navigationTitle("Countries")
         }
         .onAppear {
             apiService.fetchCountries { fetchedCountries in
